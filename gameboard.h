@@ -20,8 +20,8 @@ struct Move {
 class GameBoard {
 	public:
 	~GameBoard();
-	// singleton constructors
-	static GameBoard *startGame(string init);
+	// singleton constructor
+	static GameBoard *startGame(std::string init);
 	void clearBoard();
 	bool isLegalMove(Move &m)
 	void move(Move &m)
