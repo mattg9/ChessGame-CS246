@@ -9,8 +9,8 @@
 #include "knight.h"
 using namespace std;
 
-Knight::Knight(char x, int y, string player):GamePiece(x,y){
-	unoccupiedValue(x,y);
+Knight::Knight(Pos &p, string player):GamePiece(p){
+	unoccupiedValue(p);
 	if (player == "white") {
 		name = "N";
 	} else {
