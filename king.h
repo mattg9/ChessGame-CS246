@@ -13,10 +13,10 @@
 
 class King : public GamePiece {
 	public:
-	King(char x, int y, std::string player);
+	King(Pos &p, std::string player);
 
 	// is this move legal with how this piece operates?
-	//bool isLegalMove(Position pos1, Position pos2); 
+	//bool isLegalMove(Move &m); 
 	bool getCaptured();		
 	void print(std::ostream &out) const;
 	void Captured();
