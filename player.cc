@@ -25,7 +25,7 @@ Player* Player::CreatePlayer(string name, GameBoard *gb){
 }
 
 // player constructor
-Player::Player(string name, GameBoard *gb):name(name),gb(gb) {
+Player::Player(string name, string colour, GameBoard *gb):name(name),colour(colour),gb(gb) {
 	// name = computer -> plus difficulty
 	inCheck = false;
 }
