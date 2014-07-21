@@ -22,5 +22,7 @@ class King : public GamePiece {
 	void Captured();
 	private:
 	bool captured;
+	// can i castle?
+	bool hasmoved;
 };
 #endif
