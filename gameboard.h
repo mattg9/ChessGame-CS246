@@ -23,10 +23,8 @@ class GameBoard {
 	// singleton constructors
 	static GameBoard *startGame();
 	static GmaeBoard *setup();
-	// bool isLegalMove(Move m)
-	bool isLegalMove(char x1, int y1, char x2, int y2);
-	// void move(Move m)
-	void move(char x1, int y1, char x2, int y2);
+	bool isLegalMove(Move m)
+	void move(Move m)
 	friend std::ostream& operator<<(std::ostream &out, GameBoard &gb);
 	
 	// setup methods
