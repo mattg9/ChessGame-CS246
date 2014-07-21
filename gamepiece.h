@@ -9,6 +9,12 @@
 #include <iostream>
 #include <string>
 
+// position of game piece
+struct Pos {
+	char x;
+	int y;
+};
+
 class GamePiece {
 	public:
 	// constructor and destructor
