@@ -12,7 +12,7 @@
 
 class Player {
 	public:
-	static Player *CreatePlayer(std::string name, GameBoard *gb);
+	static Player *CreatePlayer(std::string name, std::string colour, GameBoard *gb);
 	~Player();
 	
 	void move();
@@ -26,6 +26,7 @@ class Player {
 	//void cpuLevel4Move();
 	Player(std::string name, GameBoard *gb);
 	std::string name;
+	std::string colour;
 	GameBoard *gb;
 	bool inCheck;
 	//std::string colour;
