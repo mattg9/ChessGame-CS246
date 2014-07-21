@@ -9,8 +9,8 @@
 #include "pawn.h"
 using namespace std;
 
-Pawn::Pawn(char x, int y, string player):GamePiece(x,y){
-	unoccupiedValue(x,y);
+Pawn::Pawn(Pos &p, string player):GamePiece(p){
+	unoccupiedValue(p);
 	if (player == "white") {
 		name = "P";
 	} else {
