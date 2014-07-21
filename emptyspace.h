@@ -13,8 +13,8 @@
 // empty space on the gameboard
 class EmptySpace : public GamePiece {
 	public:
-	EmptySpace(char x, int y);
-	//bool isLegalMove(char x1, int y1, char x2, int y2);
+	EmptySpace(Pos &p);
+	//bool isLegalMove(Move &m);
 	void Captured();
 	bool getCaptured();
 	void print(std::ostream &out) const;
