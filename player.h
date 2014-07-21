@@ -27,13 +27,10 @@ class Player {
 	Player(std::string name, GameBoard *gb);
 	std::string name;
 	GameBoard *gb;
+	bool inCheck;
 	//std::string colour;
 	int static numberPlayers;
 	int static maxPlayers;
-	//char static *lastMovex1;
-	//char static *lastMovex2;
-	//int static *lastMovey1;
-	//int static *lastMovey2;
 };	
 
 #endif
