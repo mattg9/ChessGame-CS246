@@ -1,0 +1,120 @@
+ANDREW GEMMEL							          MATTHEW GASTON
+
+CS 246 FINAL PROJECT – CHESS
+Design Plan
+
+The game of chess will played using a series of commands. 
+The provided commands are “game”, “setup”, “move”, “resign”, and if we have time “undo”. 
+Main.cc will continue to read input until an end of file is reached. 
+2 pointers to a black player and white player will be set to null initially and so will 1 gameboard pointer. 
+If a user enters setup, they will have the option to add '+'  delete '-' or change who goes first '= colour'.  
+Gamepieces are (K) king, (Q) queen, (R) rook, (N) knight, (B) bishop, and (P) pawns, lowercase for black pieces 
+and uppercase for white pieces. The positions on the gameboard are labelled with a character 'a' to 'h' on the x axis 
+and an integer 1 to 8 on the y axis. A user may not leave the setup mode (executed by entering the command 'done') 
+until the board contains exactly one white king and one black king, no pawns are on the first or last row of the board, 
+and neither king is in check. It will make use of methods I will describe later. 
+
+The command game can be called after setup, or can be called without setup. In this case, the default constructor will 
+be called to initialize a default game board. Classes needed for this project include a main.cc, an interface and 
+implementation file for a gameboard, a player, a gamepiece, and the various gamepieces. In our implementation of chess, 
+the gameboard has 64 pieces, ranging from a king, queen, rook, bishop, knight, pawn and an emptypiece which is a 
+placeholder for tiles without pieces. In setup mode, any position without a gamepiece will become an emptypiece object. 
+The default constructor consists of an array of 64 game pieces created on the heap. Once an end of file character is 
+reached in the main, the gameboard is destroyed by destroying its gamepieces, and both players are destoryed by 
+destroying the gameboard it points to. 	Players are initialized after the command game. 'game whiteplayer blackplayer' 
+is entered where a player can be one of a human, or a computer[1-4]. This is the name of the player. The program uses 
+the name of a player to determine what “move” method to call. Human moves are done through standard input. The program 
+waits for 2 positions to be entered, the first being the piece that is to be moved, the second position is the spot on 
+the board you want that piece to go to. 'move e1 e3' for example. Players alternate turns. A boolean variable called 
+whiteplays determines whether white or black should call their respective move method. The program must determine if 
+the player has entered a valid move. The move command takes the position coordinates char x1 char x2 int y1 int y2 and 
+sends them to the gameboard they point to. It would make sense to group a char x and an int y into a structure called 
+Pos and the Positions into a structure called Move.The gameboard must use a method called isLegalMove to determine 
+if the entered coordinates point to spots actually on the gameboard, and position 1 does not equal position 2, and 
+if that the user has selected an actual gamepiece (and not an empty tile on the board) that belongs to them. 
+Then a virtual method is called to determine if the gamepiece the user is trying to move can move in that particular way.
+The gamepiece must return a list of positions that the gamepiece wants to go through, and the gameboard will check 
+to see if those positions are occupied, unoccupied, or if a gamepiece has been captured and therefore is not in the way. 
+If a move can take place the gameboard will call its move method, in which the gamepiece at position 1 will swap places 
+in the array with the gamepiece at position 2. Each gamepiece has a string member called unoccupied which is what the 
+gameboard looks like when no piece is on it. “_” is for black tiles, and “ “ is for white tiles. The game pieces will 
+swap these values in order to keep the gameboard looking the same when we call the output operator after a move is made. 
+If a move captures a piece, that gamepiece will call a method to change its captured member value. Now a player cannot 
+move that piece, because it does not exist on the board.
+
+Virtual methods are going to be used to determine how each piece works, how to output each piece on the gameboard. 
+Important private members include for kings, pawns, and rooks, whether they have been moved (so they can't castle, or 
+move pawn two tiles after first move). If a pawn is promoted by reached the other side of the board, it will be deleted 
+and a new specified game piece after the move made (move e7 e8 Q) will be created in that position. 
+The operator << will be overloaded to output a gameboard. The function will go through the array of gamepieces and 
+output either the name of the gamepiece if it has not been captured and is not an empty part of the gameboard...or 
+it will print the value of the unoccupied member. Each line will begin with a number 1 to 8 for determining the yaxis 
+and a 9th line will output the xaxis “ abcdefgh”. After each move it is important that the program check whether 
+the opposing player is in check, checkmate, or stalemate. This will be done by first locating the opposing players 
+king on the gameboard. Then the program will go through all the gamepieces the previous player has on the board and 
+confirm with the isLegalMove method, whether or not they pose a threat for the king (can capture him in one move). 
+If so, a player will be in check and this will be accounted for when the player tries to make their next legal move. 
+Plus, the program will output who is in Check!. Checkmate is determined by using the check method and the isLegalMove 
+method. If a player is in check, the checkmate method is called and will determine if the king moves in any direction, 
+will they be out of check. If a player is in checkmate, then they have lost and the program will output an appropriate 
+message. Score is kept track by the gameboard through the entire session. A win is 1 point, a loss is 0 and a stalemate 
+is 1/2 a point. So these 2 static double variables whitewins and blackwins will do the trick for outputing the score at 
+the end of a session (when the input reaches end of file). A user can only quit by entering 'resign' and thus they 
+forfeit and give the opposing player a point.
+
+We will discuss the undo feature in the questions section. Last feature is making a window with graphics. 
+This will be added last, where the window object will be initialized upon starting a game, and in order to 
+limit the number of updates that must be made to the graphic, a move will consist of updating just the 2 tiles 
+that were swapped.
+
+QUESTIONS
+1) Chess games come with standard opening move sequences and responses to opening moves.
+2) How would you implement a feature for 'undo' moves. Unlimited undos?
+	
+	Lets answer these questions together. For starters, let's give the gameboard a stack implemented as a dynamic 
+	array of moves which pushs a players entered moves into a stack of moves. A move is a structure with 2 position 
+	members(pos1, pos2) (position is a (char x, int y)). When a player wants to undo any number of moves, 
+	the program reads the command undo, and pops off the last 2 moves entered. The first move is the opposing 
+	players move, the second move is the one that they made. The move method is called but the pos1 is now pos2 
+	and pos2 is now pos1. We reverse the move through the same method 'move'. The program does not change whose 
+	turn it is, therefore the player can perform their mulligan any number of times. This dynamic array containing 
+	moves also helps us with question 1.
+	
+	In question 1, we would create a number of text files that has a list of move sequences. 
+	The computer randomly picks a file (movesequence + [1-9]) and has access to it through an ifstream. 
+	The file tells the program it wants to perform the first move on the first line of the file. 
+	The opposing player than makes a move. That move is stored in our dynamic array, which has a size variable. 
+	We retrieve the last move and search the file for what move to do next. 
+	Once a line looks identical to the move that was player, the player reads in the following line which 
+	contains an appropriate responding move. This works well for the first 12 or so moves, while many moves 
+	are still valid.
+
+3) Four  player chess?
+	The gameboard would be 14 by 14 (with some positions not legal to make(the 9x9 corners). 
+	Wed have positions 1 to 14 on y axis and 'a' to 'n' on x axis. We would initialize 4 players of different 
+	colours when the command game is called. The setup command would require a check to make sure 4 different 
+	kings are on the board and not in check, and the pawns are not on the edges of the gameboard. 
+	The names of every piece will have to change. Make every pieces name be uppercase but have a letter 
+	before to  label it as a colour's piece. (WK white king, BK black king, GK green king, OK orange king). 
+	Pawns will be promoted if they reach either end of the board 
+	(right left or directly across of their starting position). 
+	Other than that, there will be few additions to make. 
+	All the important methods are used the same in 2 player chess.
+	
+Last part of the plan is who will do what.
+Matthew
+both work on main interface, move method, .h
+- check, checkmate methods
+- setup feature
+Andrew
+both work on main interface, move method, .h
+- islegalmove methods
+- xwindow
+
+ORDER TO COMPLETE
+create main interaction to recieve input and create objects. 
+Create .h and .cc files for all the objects. Gameboard created with gamepieces, 
+and a player can point to it. Setup feature along with the default initialization of a gameboard. 
+Overload output. Create move feature. Create the isLegalMove method which will be used by 
+the isCheck method which will be used by the isCheckmate method. 
+Lastly create xwindow, and then make an undo feature.
