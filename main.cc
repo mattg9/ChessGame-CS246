@@ -9,10 +9,11 @@
 using namespace std;
 
 int main() {
-	bool game = false;
-	GameBoard *gb;
-	Player *white, *black;
+	GameBoard *gb = 0;
+	Player *white = 0;
+	Player *black = 0;
 	bool whiteplays = true;
+	bool game = false;
 	
 	string input;
 	while (true) {
@@ -54,6 +55,7 @@ int main() {
 				//		cout << "White Wins!" << endl;
 					}
 					break;
+					game = !game;
 				// white human plays
 				} else if (command == "move" && whiteplays) {
 					white->move();
@@ -75,7 +77,7 @@ int main() {
 			while (true) {
 				cin >> command;
 				if (command == "done") {
-					// check valid board
+					// gb->validBoard();
 					break;
 				} else if (command == "+") {
 					string piece, pos;
