@@ -9,8 +9,8 @@
 #include "king.h"
 using namespace std;
 
-King::King(char x, int y, string player):GamePiece(x,y){
-	unoccupiedValue(x,y);
+King::King(Pos &p, string player):GamePiece(p){
+	unoccupiedValue(p);
 	if (player == "white") {
 		name = "K";
 	} else {
