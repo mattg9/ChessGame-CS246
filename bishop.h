@@ -12,7 +12,7 @@
 
 class Bishop : public GamePiece {
 	public:
-	Bishop(char x, int y, std::string player);
+	Bishop(Pos &p, std::string player);
 
 	// is this move legal with how this piece operates?
 	//bool isLegalMove(Position pos1, Position pos2); 
