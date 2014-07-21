@@ -9,8 +9,8 @@
 #include "bishop.h"
 using namespace std;
 
-Bishop::Bishop(char x, int y, string player):GamePiece(x,y){
-	unoccupiedValue(x,y);
+Bishop::Bishop(Pos &p, string player):GamePiece(p){
+	unoccupiedValue(p);
 	if (player == "white") {
 		name = "B";
 	} else {
