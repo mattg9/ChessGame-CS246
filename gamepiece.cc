@@ -11,12 +11,12 @@ using namespace std;
 
 // create an abstract game piece
 // assign the position x,y
-GamePiece::GamePiece(char x, int y):x(x), y(y){}
+GamePiece::GamePiece(Pos &p):p(p){}
 
 // what does the board look like underneath
 // this game piece.
-void GamePiece::unoccupiedValue(char x, int y){
-	if ((x%2==0 && y%2==0) || (x%2!=0 && y%2!=0)) {
+void GamePiece::unoccupiedValue(Pos &p){
+	if ((p.x%2==0 && p.y%2==0) || (p.x%2!=0 && p.y%2!=0)) {
 		unoccupied = "_";
 	} else {
 		unoccupied = " ";
