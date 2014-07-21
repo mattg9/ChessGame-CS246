@@ -13,7 +13,7 @@ int main() {
 	Player *white = 0;
 	Player *black = 0;
 	bool whiteplays = true;
-	bool game = false;
+	bool setup = false;
 	
 	string input;
 	while (true) {
@@ -31,14 +31,17 @@ int main() {
 		}
 		// GAME
 		// start a new game
-		if (!game && input == "game"){
-			gb = GameBoard::startGame();
+		if (input == "game"){
+			if (!setup){
+				gb = GameBoard::startGame("default");
+			} else {
+				setup = false;
+			}
 			string whiteplayer, blackplayer;
 			cin >> whiteplayer >> blackplayer;
 			white = Player::CreatePlayer(whiteplayer,gb);
 			black = Player::CreatePlayer(blackplayer,gb);
 			cout << *gb;
-			game = true;
 			while (true) {
 			// PLAYING THE GAME
 				string command;
@@ -72,21 +75,33 @@ int main() {
 			}
 		// SETUP
 		// initialize a game board. not in game
-		} else if (!game && input == "setup") {
+		} else if (input == "setup") {
+			setup = true;
+			gb = GameBoard::startGame("setup");
 			string command;
 			while (true) {
 				cin >> command;
 				if (command == "done") {
-					// gb->validBoard();
-					break;
+					if (gb->validBoard()) {
+						break;
+					} else {
+						cout << "not a valid board!" << endl;
+					}
 				} else if (command == "+") {
-					string piece, pos;
+					char piece;
+					string pos;
 					cin >> piece >> pos;
-					//gb->add(piece,pos);
+					Pos p;
+					p.x = pos[0];
+					p.y = pos[1];
+					gb->add(piece,p);
 				} else if (command == "-") {
 					string pos;
 					cin >> pos;
-					//gb->remove(pos);
+					Pos p;
+					p.x = pos[0];
+					p.y = pos[1];
+					gb->remove(p);
 				} else if (command == "=") {
 					string colour;
 					cin >> colour;
