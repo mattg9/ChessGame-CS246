@@ -20,13 +20,19 @@ struct Move {
 class GameBoard {
 	public:
 	~GameBoard();
-	// singleton constructor
-	static GameBoard *startGame();	
+	// singleton constructors
+	static GameBoard *startGame();
+	static GmaeBoard *setup();
 	// bool isLegalMove(Move m)
 	bool isLegalMove(char x1, int y1, char x2, int y2);
 	// void move(Move m)
 	void move(char x1, int y1, char x2, int y2);
 	friend std::ostream& operator<<(std::ostream &out, GameBoard &gb);
+	
+	// setup methods
+	void add(char piece, Pos p);
+	void del(Pos p);
+	void validBoard();
 	
 	private:
 	GameBoard();
