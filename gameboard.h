@@ -21,19 +21,20 @@ class GameBoard {
 	public:
 	~GameBoard();
 	// singleton constructors
-	static GameBoard *startGame();
-	static GmaeBoard *setup();
-	bool isLegalMove(Move m)
-	void move(Move m)
+	static GameBoard *startGame(string init);
+	void clearBoard();
+	bool isLegalMove(Move &m)
+	void move(Move &m)
 	friend std::ostream& operator<<(std::ostream &out, GameBoard &gb);
 	
 	// setup methods
 	void add(char piece, Pos p);
 	void del(Pos p);
-	void validBoard();
+	bool validBoard();
 	
 	private:
 	GameBoard();
+	void defaultGameBoard();
 	GamePiece *piece[9][8];
 	static GameBoard *gbInstance;
 	static double whiteWins;
