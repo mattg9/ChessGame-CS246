@@ -27,7 +27,7 @@ Player* Player::CreatePlayer(string name, GameBoard *gb){
 // player constructor
 Player::Player(string name, GameBoard *gb):name(name),gb(gb) {
 	// name = computer -> plus difficulty
-	
+	inCheck = false;
 }
 
 Player::~Player(){}	
@@ -50,12 +50,16 @@ void Player::move(){
 void Player::humanMove() {
 	string pos1, pos2;
 	cin >> pos1 >> pos2;
-	char x1 = pos1[0];
-	int y1 = pos1[1] - '0';
-	char x2 = pos2[0];
-	int y2 = pos2[1] - '0';
-	if (gb->isLegalMove(x1,y1,x2,y2)) {
-		gb->move(x1,y1,x2,y2);
+	Move m;
+	m.pos1.x = pos1[0];
+	m.pos1.y = pos1[1];
+	m.pos2.x = pos2[0];
+	m.pos2.y = pos2[1];
+	if (gb->isLegalMove(m, inCheck, colour)) {
+		gb->move(m);
+	}
+	if (inCheck) {
+		inCheck = false;
 	}
 	cout << *gb;
 }
