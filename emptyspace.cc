@@ -9,8 +9,8 @@
 #include "emptyspace.h"
 using namespace std;
 
-EmptySpace::EmptySpace(char x, int y):GamePiece(x,y){
-	unoccupiedValue(x,y);
+EmptySpace::EmptySpace(Pos &p):GamePiece(p){
+	unoccupiedValue(p);
 	name = "empty";
 }
 
