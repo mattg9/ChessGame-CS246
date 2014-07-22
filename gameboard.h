@@ -24,7 +24,7 @@ class GameBoard {
 	static GameBoard *startGame(std::string init);
 	void clearBoard();
 	void printScore();
-	bool isLegalMove(Move &m)
+	bool isLegalMove(Move &m, bool inCheck, std::string colour)
 	void move(Move &m)
 	friend std::ostream& operator<<(std::ostream &out, GameBoard &gb);
 	
