@@ -29,9 +29,9 @@ GameBoard *GameBoard::startGame(string init){
 		gbInstance = new GameBoard();
 	} 
 	if (init == "default") {
-		defaultGameBoard();
+		gbInstance->defaultGameBoard();
 	} else if (init == "setup") {
-		clearBoard();
+		gbInstance->clearBoard();
 	}
 	return gbInstance;
 }
