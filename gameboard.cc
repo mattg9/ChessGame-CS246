@@ -41,10 +41,13 @@ GameBoard *GameBoard::startGame(string init){
 void GameBoard::clearBoard(){
 	for (int i = 1; i < 9; i++) {
 		for (char j = 'a'; j <= 'h'; j++){
+			Pos p;
+			p.x = j;
+			p.y = i;
 			if (piece[i][j-97] != NULL) {
 				delete piece[i][j-97];
 			}
-			piece[i][j-97] = new EmptySpace(j,i);	
+			piece[i][j-97] = new EmptySpace(p);	
 		}
 	}
 }
@@ -78,8 +81,8 @@ void GameBoard::del(Pos p) {
 }
 
 bool GameBoard::validBoard(){
-	countBlackKing = 0;
-	countWhiteKing = 0;
+	int countBlackKing = 0;
+	int countWhiteKing = 0;
 	for (int i = 1; i < 9; i++) {
 		for (char j = 'a'; j <= 'h'; j++) {
 			if (piece[i][j-97]->getName() == "K") {
@@ -141,7 +144,7 @@ void GameBoard::defaultGameBoard(){
 					piece[i][j-97] = new King(p,"black");
 				}
 			} else { 
-				piece[i][j-97] = new EmptySpace(jp);
+				piece[i][j-97] = new EmptySpace(p);
 			}
 		}
 	}
