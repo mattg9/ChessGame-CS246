@@ -9,8 +9,8 @@
 #include "queen.h"
 using namespace std;
 
-Queen::Queen(char x, int y, string player):GamePiece(x,y){
-	unoccupiedValue(x,y);
+Queen::Queen(Pos &p, string player):GamePiece(p){
+	unoccupiedValue(p);
 	if (player == "white") {
 		name = "Q";
 	} else {
