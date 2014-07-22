@@ -75,8 +75,15 @@ int main() {
 		// SETUP
 		// initialize a game board. not in game
 		} else if (input == "setup") {
-			setup = true;
-			gb = GameBoard::startGame("setup");
+			// have you already started setting up a board.
+			// if not, here is your new board.
+			// setup is now true, so the game command will know
+			// you want to use your setup
+			if (setup == false) {
+				gb = GameBoard::startGame("setup");
+			} else {
+				setup = true;
+			}
 			string command;
 			while (true) {
 				cin >> command;
