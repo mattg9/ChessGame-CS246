@@ -58,7 +58,6 @@ int main() {
 				//		cout << "White Wins!" << endl;
 					}
 					break;
-					game = !game;
 				// white human plays
 				} else if (command == "move" && whiteplays) {
 					white->move();
@@ -102,7 +101,7 @@ int main() {
 					Pos p;
 					p.x = pos[0];
 					p.y = pos[1];
-					gb->remove(p);
+					gb->del(p);
 				} else if (command == "=") {
 					string colour;
 					cin >> colour;
