@@ -52,9 +52,9 @@ void Player::humanMove() {
 	cin >> pos1 >> pos2;
 	Move m;
 	m.pos1.x = pos1[0];
-	m.pos1.y = pos1[1];
+	m.pos1.y = pos1[1]-'0';
 	m.pos2.x = pos2[0];
-	m.pos2.y = pos2[1];
+	m.pos2.y = pos2[1]-'0';
 	if (gb->isLegalMove(m, inCheck, colour)) {
 		gb->move(m);
 	}
