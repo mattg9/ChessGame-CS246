@@ -24,7 +24,7 @@ class Player {
 	//void cpuLevel2Move();
 	//void cpuLevel3Move();
 	//void cpuLevel4Move();
-	Player(std::string name, GameBoard *gb);
+	Player(std::string name, std::string colour, GameBoard *gb);
 	std::string name;
 	std::string colour;
 	GameBoard *gb;
