@@ -16,9 +16,9 @@ int Player::maxPlayers = 2;
 
 // creates and returns a new pointer to a player
 // if there is not already 2 existing players
-Player* Player::CreatePlayer(string name, GameBoard *gb){
+Player* Player::CreatePlayer(string name, string colour, GameBoard *gb){
 	if (numberPlayers < maxPlayers) {
-		Player *p = new Player(name, gb);
+		Player *p = new Player(name, colour, gb);
 		numberPlayers++;	
 		return p;
 	}
