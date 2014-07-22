@@ -93,14 +93,14 @@ int main() {
 					cin >> piece >> pos;
 					Pos p;
 					p.x = pos[0];
-					p.y = pos[1];
+					p.y = pos[1]-'0';
 					gb->add(piece,p);
 				} else if (command == "-") {
 					string pos;
 					cin >> pos;
 					Pos p;
 					p.x = pos[0];
-					p.y = pos[1];
+					p.y = pos[1]-'0';
 					gb->del(p);
 				} else if (command == "=") {
 					string colour;
