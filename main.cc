@@ -57,6 +57,7 @@ int main() {
 					} else {
 				//		cout << "White Wins!" << endl;
 					}
+					whiteplays = true;
 					break;
 				// white human plays
 				} else if (command == "move" && whiteplays) {
