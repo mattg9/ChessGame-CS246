@@ -22,6 +22,13 @@ double GameBoard::whiteWins = 0;
 double GameBoard::blackWins = 0;
 GameBoard* GameBoard::gbInstance = NULL;
 
+// prints the score;
+void GameBoard::printScore() {
+	cout << "Final Score: " << endl;
+	cout << "White: " << whiteWins << endl;
+	cout << "Black: " << blackWins << endl;
+}
+
 // one gameboard exists at any time
 // this method creates gameboard
 GameBoard *GameBoard::startGame(string init){
