@@ -171,8 +171,11 @@ ostream& operator<<(ostream &out, GameBoard &gb){
 
 bool GameBoard::isLegalMove(Move &m, bool inCheck, string colour){
 	// check whether the moves positions are on the board
+	// is the pos1 == to pos2. not allowed.
 	// is the person in check..inwhich case will this move
-	/// put them out of check. calls isCheck();
+	/// put them out of check. 
+	// we could move pieces...call is check.. then
+	// swap pieces back the way they were originally.
 	// does the piece move like this!
 	//piece[m.pos1.y][m.pos1.x]->isLegalMove(m.pos2);
 	//Pos listpos [8] = piece[m.pos1.y][m.pos1.x]->requiredSpaces(m.pos2);
