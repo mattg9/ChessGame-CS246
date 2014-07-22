@@ -169,12 +169,21 @@ ostream& operator<<(ostream &out, GameBoard &gb){
 	return out;
 }
 
-bool GameBoard::isLegalMove(Move &m){
- 	// check for pieces in the way!
+bool GameBoard::isLegalMove(Move &m, bool inCheck, string colour){
+	// check whether the moves positions are on the board
+	// is the person in check..inwhich case will this move
+	/// put them out of check. calls isCheck();
 	// does the piece move like this!
-	//piece[y1][x2-97]->isLegalMove(x2,y2);
+	//piece[m.pos1.y][m.pos1.x]->isLegalMove(m.pos2);
+	//Pos listpos [8] = piece[m.pos1.y][m.pos1.x]->requiredSpaces(m.pos2);
+	// are these pieces occupied with uncaptured game pieces
 	return true;
 }
+
+//bool GameBoard::isCheck();
+//bool GameBoard::isCheckMate();
+// uses isCheck which uses isLEgalMove on every possible move
+// a player can perform.
 
 // move game pieces
 void GameBoard::move(Move &m) {
@@ -183,9 +192,6 @@ void GameBoard::move(Move &m) {
 	piece[m.pos1.y][m.pos1.x-97]->setUnoccupied(p2);
 	piece[m.pos2.y][m.pos2.x-97]->setUnoccupied(p1);
 	GamePiece *temp;
-	// difference between a move and undo
-	// undo reverts to last state
-	// move will change captured to true
 	if (piece[m.pos2.y][m.pos2.x-97]->getName() != "empty"
 		&& !piece[m.pos2.y][m.pos2.x-97]->getCaptured()) {
 		piece[m.pos2.y][m.pos2.x-97]->Captured();
