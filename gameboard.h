@@ -23,6 +23,7 @@ class GameBoard {
 	// singleton constructor
 	static GameBoard *startGame(std::string init);
 	void clearBoard();
+	void printScore();
 	bool isLegalMove(Move &m)
 	void move(Move &m)
 	friend std::ostream& operator<<(std::ostream &out, GameBoard &gb);
