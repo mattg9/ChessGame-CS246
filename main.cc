@@ -23,7 +23,7 @@ int main() {
 		// delete the game board and players
 		if (cin.fail() && cin.eof()) {
 			cin.clear();
-			//gb->printScore();
+			gb->printScore();
 			delete white;
 			delete black;
 			delete gb;
@@ -39,8 +39,8 @@ int main() {
 			}
 			string whiteplayer, blackplayer;
 			cin >> whiteplayer >> blackplayer;
-			white = Player::CreatePlayer(whiteplayer,gb);
-			black = Player::CreatePlayer(blackplayer,gb);
+			white = Player::CreatePlayer(whiteplayer,"white",gb);
+			black = Player::CreatePlayer(blackplayer,"black",gb);
 			cout << *gb;
 			while (true) {
 			// PLAYING THE GAME
@@ -83,6 +83,7 @@ int main() {
 				cin >> command;
 				if (command == "done") {
 					if (gb->validBoard()) {
+						cout << *gb;
 						break;
 					} else {
 						cout << "not a valid board!" << endl;
