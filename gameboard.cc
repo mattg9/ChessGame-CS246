@@ -60,7 +60,7 @@ void GameBoard::clearBoard(){
 }
 
 void GameBoard::add(char gamepiece, Pos p) {
-	delete piece[p.y][p.x];
+	delete piece[p.y][p.x-97];
 	string player;
 	if (gamepiece >= 'a' && gamepiece <= 'z') {
 		player = "black";
@@ -83,7 +83,7 @@ void GameBoard::add(char gamepiece, Pos p) {
 }
 
 void GameBoard::del(Pos p) {
-	delete piece[p.y][p.x];
+	delete piece[p.y][p.x-97];
 	piece[p.y][p.x] = new EmptySpace(p);
 }
 
