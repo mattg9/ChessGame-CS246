@@ -11,10 +11,10 @@
 #include "gamepiece.h"
 class Queen : public GamePiece {
 	public:
-	Queen(char x, int y, std::string player);
+	Queen(Pos &p, std::string player);
 
 	// is this move legal with how this piece operates?
-		//bool isLegalMove(Position pos1, Position pos2); 
+		//bool isLegalMove(Move &m); 
 	bool getCaptured();
 	void Captured();
 	void print(std::ostream &out) const;
