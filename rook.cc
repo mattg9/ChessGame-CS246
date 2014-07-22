@@ -9,8 +9,8 @@
 #include "rook.h"
 using namespace std;
 
-Rook::Rook(char x, int y, string player):GamePiece(x,y){
-	unoccupiedValue(x,y);
+Rook::Rook(Pos &p, string player):GamePiece(p){
+	unoccupiedValue(p);
 	if (player == "white") {
 		name = "R";
 	} else {
